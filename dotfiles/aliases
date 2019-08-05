@@ -1,0 +1,48 @@
+# Shortcuts
+alias _="sudo"
+
+# Global aliases for usage with `|`
+
+alias G="grep -i"
+alias H="head"
+alias T="tail"
+alias L="less"
+
+# List declared aliases, functions, paths
+
+alias functions="declare -f | grep '^[a-z].* ()' | sed 's/{$//'"
+alias paths='echo -e ${PATH//:/\\n}'
+
+# Directory listing/traversal
+
+alias l="ls -lahA --time-style=long-iso --group-directories-first"
+alias lt="ls -lhAtr --time-style=long-iso --group-directories-first"
+alias ld="ls -ld */"
+alias lpm="stat -c '%a %n' *"
+
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias -- -="cd -"                  # Go to previous dir with -
+alias cd.='cd $(readlink -f .)'    # Go to real dir (i.e. if current dir is linked)
+
+mk() {
+  mkdir -p "$@" && cd "$@"
+}
+
+# Network
+
+alias ip="ip address | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
+alias ipm="ip address | grep -Eo 'link/ether [^\ ]*' | grep -Eo ' [^\ ]*'"
+
+# Miscellaneous
+
+alias hosts="cat /etc/hosts"
+alias week="date +%V"
+alias speedtest="wget -O /dev/null http://speed.transip.nl/100mb.bin"
+
+# Wallpapers
+
+yt() {
+  exec ~/.config/wallpapers/mpv.sh '-f mp4 $@' 
+}

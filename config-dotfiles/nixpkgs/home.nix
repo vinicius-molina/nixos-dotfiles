@@ -43,10 +43,21 @@
 
 	# CONFIGS
 
-    	programs.git = {
-	 enable = true;
-	 userName = "vinicius-molina";
-	 userEmail = "vinicius_molina99@hotmail.com";
-	};
-	
+    programs.git = {
+      enable = true;
+      userName = "vinicius-molina";
+      userEmail = "vinicius_molina99@hotmail.com";
+    };
+    
+    programs.bash = {
+        shellOptions = ["checkjobs"];
+        profileExtra = ''
+            [[ -f ~/.aliases]] && source ~/.aliases
+        '';
+    };
+    
+    programs.neovim = {
+        viAlias = true; # o comando vi executa o nvim
+        vimAlias = true; # o comando vim executa o nvim
+    };
 }
