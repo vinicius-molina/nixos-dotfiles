@@ -5,7 +5,7 @@
 	  # system utils
 	  pkgs.unzip
 	  pkgs.wget
-	  pkgs.wpa_supplicant_gui
+	  #pkgs.wpa_supplicant_gui
 	  pkgs.htop
 	  pkgs.clips # verify
 
@@ -39,14 +39,6 @@
 	  # games
 	  #pkgs.steam # unfree
 	  #pkgs.wine
-
-	  # nootbook
-	  pkgs.bluez # blutooth suport
-	  pkgs.blueman # GTK blutooth manager
-	  pkgs.xorg.xf86inputsynaptics # touchpad support
-
-	  # printer
-	  pkgs.cups
 	];
 
 	# CONFIGS

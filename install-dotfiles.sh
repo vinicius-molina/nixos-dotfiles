@@ -8,4 +8,9 @@ if [[ $# -lt 1 ]]; then
   exit 1
 fi
 
-ln -fsv $SCRIPTPATH/dotfiles/* "$1/.config"
+mkdir -p "$1/.config"
+ln -fsv $SCRIPTPATH/config-dotfiles/* "$1/.config"
+
+for file in $SCRIPTPATH/dotfiles/*; do
+	ln -fsv $file "$1/.$(basename $file)"
+done
