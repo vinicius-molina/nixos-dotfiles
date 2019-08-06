@@ -14,3 +14,7 @@ ln -fsv $SCRIPTPATH/config-dotfiles/* "$1/.config"
 for file in $SCRIPTPATH/dotfiles/*; do
 	ln -fsv $file "$1/.$(basename $file)"
 done
+
+for file in $SCRIPTPATH/home-files/*; do
+	ln -fsv $file "$1/$(basename $file)"
+done

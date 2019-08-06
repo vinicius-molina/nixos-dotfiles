@@ -31,9 +31,8 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 bindsym $mod+Alt xrdb ~/.Xresources
 
 # Wallpapers binds
-bindsym $mod+F1 exec ~/.config/wallpapers/mpv.sh "--ao=null --loop-file=inf /home/vinicius/animated_wallpapers/fate-wallpaper.mp4"
-bindsym $mod+F2 exec ~/.config/wallpapers/mpv.sh "--ao=null --loop-file=inf /home/vinicius/animated_wallpapers/ahri_fliperama_wallpaper.mp4"
-bindsym $mod+F4 exec ~/.config/i3/feh-slides
+bindsym $mod+F1 exec ~/.config/wallpapers/mpv.sh "--ao=null --loop-file=inf https://youtu.be/DYW-kEiCnJI"
+bindsym $mod+F4 exec ~/.config/wallpapers/feh-slides.sh
 
 # FOCUS
 bindsym $mod+j focus left
@@ -182,10 +181,10 @@ for_window [window_type="dialog"] floating enable
 for_window [window_type="menu"] floating enable
 
 # EXECS
-#exec_always --no-startup-id compton 
+exec_always --no-startup-id compton 
 #exec_always ~/.config/polybar/polybar.sh
 #exec_always --no-startup-id nm-applet
-#exec_always ~/.config/wallpapers/mpv.sh "--ao=null --loop-file=inf /home/vinicius/animated_wallpapers/fate-wallpaper.mp4"
+exec_always --no-statup-id ~/.config/wallpapers/feh-slides.sh
 
 bar {
   status_command i3status
