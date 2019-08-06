@@ -1,7 +1,7 @@
 {pkgs, ...}:
 
 {
-	home.packages = [
+    home.packages = [
 	  # system utils
 	  pkgs.unzip
 	  pkgs.wget
@@ -39,9 +39,11 @@
 	  # games
 	  #pkgs.steam # unfree
 	  #pkgs.wine
-	];
+    ];
 
-	# CONFIGS
+    # CONFIGS
+    
+    programs.home-manager.enable = true;
 
     programs.git = {
       enable = true;
@@ -50,14 +52,17 @@
     };
     
     programs.bash = {
+    	enable = true;
         shellOptions = ["checkjobs"];
         profileExtra = ''
-            [[ -f ~/.aliases]] && source ~/.aliases
+            [[ -f ~/.aliases ]] && source ~/.aliases
         '';
     };
     
     programs.neovim = {
+    	enable = true;
         viAlias = true; # o comando vi executa o nvim
         vimAlias = true; # o comando vim executa o nvim
     };
+
 }
