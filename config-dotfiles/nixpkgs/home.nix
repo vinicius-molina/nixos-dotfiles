@@ -30,8 +30,15 @@
 	  pkgs.gcc
 	  pkgs.linuxHeaders
 	  pkgs.cmake
+	  pkgs.gnumake
 	  pkgs.elixir_1_8
 	  pkgs.yarn
+	  pkgs.python3
+	  pkgs.python2
+	  pkgs.nerdfonts
+	  pkgs.python37Packages.powerline
+	  pkgs.powerline-fonts
+	  pkgs.fzf
 
 	  # etc
 	  #pkgs.krita
