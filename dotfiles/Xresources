@@ -30,7 +30,7 @@ rofi.separator-style: dash
 URxvt.font: xft:SauceCodePro\ Nerd\ Font\ Mono:pixelsize=12
 #URxvt.font: xft:SauceCodePro\ Nerd\ Font:pixelsize=12
 
-URxvt.letterSpace: -1
+#URxvt.letterSpace: -1
 
 ## FOR TESTS:
 #printf '\e]710;%s\007' "xft:Anonymice\ Powerline:pixelsize=13"

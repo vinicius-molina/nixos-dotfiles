@@ -46,3 +46,12 @@ alias speedtest="wget -O /dev/null http://speed.transip.nl/100mb.bin"
 yt() {
   exec ~/.config/wallpapers/mpv.sh '-f mp4 $@' 
 }
+
+wificfg() {
+  if [[ $# -lt 2 ]]; then
+    echo "Ex: wificfg name password"
+    return
+  fi
+
+  sudo wpa_supplicant -B -i wlp3s0 -c <(wpa_passphrase '$1' '$2')
+}

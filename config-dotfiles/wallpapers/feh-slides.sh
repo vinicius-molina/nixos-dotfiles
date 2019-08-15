@@ -1,11 +1,20 @@
+# for restart
+if [[ `ps h -C bash -o cmd= | grep -c feh-slides` -gt 0 ]]; then
+  pkill -f feh-slides & wait
+fi
 
-#!/bin/bash
-if [[ "$FEH_SLIDES" -ne 1 ]]; then
-  pkill -f animatedWallpaper &
-  wait
-  export FEH_SLIDES=1
-  while true; do 
-    feh --recursive --randomize --bg-fill ~/wallpapers
+# kill wallpaper animated
+if [[ `ps -Al | grep -c xwinwrap` -gt 0 ]]; then
+  pkill xwinwrap & wait
+fi
+
+( exec -a "feh-slides" bash ) <<EOF &
+{
+  SCRIPT=$(readlink -f "$0")
+
+  while true; do
+    feh --recursive --randomize --bg-fill ~/wallpapers/
     sleep 5
   done
-fi
+}
+EOF

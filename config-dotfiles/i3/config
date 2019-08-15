@@ -35,10 +35,6 @@ bindsym $mod+F1 exec ~/.config/wallpapers/mpv.sh "--ao=null --loop-file=inf http
 bindsym $mod+F4 exec ~/.config/wallpapers/feh-slides.sh
 
 # FOCUS
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
@@ -62,7 +58,7 @@ bindsym $mod+a focus parent
 bindsym $mod+z focus child
 
 # COORDINATION
-bindsym $mod+h split h
+bindsym $mod+b split h
 bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
@@ -185,10 +181,10 @@ for_window [window_type="dialog"] floating enable
 for_window [window_type="menu"] floating enable
 
 # EXECS
-exec_always --no-startup-id compton 
+#exec_always --no-startup-id compton 
 #exec_always ~/.config/polybar/polybar.sh
 #exec_always --no-startup-id nm-applet
-exec_always --no-statup-id ~/.config/wallpapers/feh-slides.sh
+exec_always --no-startup-id ~/.config/wallpapers/feh-slides.sh
 
 bar {
   status_command i3status

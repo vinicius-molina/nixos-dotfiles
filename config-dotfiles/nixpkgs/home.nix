@@ -61,7 +61,7 @@
     programs.bash = {
     	enable = true;
         shellOptions = ["checkjobs"];
-        profileExtra = ''
+        bashrcExtra = ''
             [[ -f ~/.aliases ]] && source ~/.aliases
         '';
     };
@@ -72,4 +72,10 @@
         vimAlias = true; # o comando vim executa o nvim
     };
 
+    services.compton = {
+      enable = true;
+      activeOpacity = "0.9";
+      inactiveOpacity = "0.85";
+      menuOpacity = "0.95";
+    }; 
 }
