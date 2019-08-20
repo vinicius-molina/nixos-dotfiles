@@ -39,9 +39,15 @@
 	  pkgs.python37Packages.powerline
 	  pkgs.powerline-fonts
 	  pkgs.fzf
+	  pkgs.silver-searcher
 
 	  # etc
 	  #pkgs.krita
+	  pkgs.chromium
+	  pkgs.postgresql
+	  pkgs.inotify-tools
+	  pkgs.nodejs
+	  pkgs.net_snmp
 
 	  # games
 	  #pkgs.steam # unfree
@@ -77,5 +83,29 @@
       activeOpacity = "0.9";
       inactiveOpacity = "0.85";
       menuOpacity = "0.95";
-    }; 
+      shadowExclude = [
+        "! name ~= ''"
+	"class_g *?= 'firefox'"
+	"class_g *?= 'brave'"
+	"name ~= 'Firefox$'"
+	"name *= 'Chromium'"
+	"name *= 'Chrome'"
+	"name = 'Notification'"
+	"name = 'xfce4-notifyd'"
+	"name *= 'VLC'"
+	"name *= 'compton'"
+        "window_type *= 'menu'"
+      ];
+      opacityRule = [
+	"100:class_g *?= 'firefox'"
+	"100:class_g *?= 'brave'"
+	"100:name ~= 'Firefox$'"
+	"100:name *= 'Chromium'"
+	"100:name *= 'Chrome'"
+	"100:name *= 'VLC'"
+        "100:window_type *= 'menu'"
+      ];
+     }; 
+    
+    fonts.fontconfig.enable = true;
 }

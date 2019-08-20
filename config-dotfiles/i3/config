@@ -31,7 +31,8 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 bindsym $mod+Alt xrdb ~/.Xresources
 
 # Wallpapers binds
-bindsym $mod+F1 exec ~/.config/wallpapers/mpv.sh "--ao=null --loop-file=inf https://youtu.be/DYW-kEiCnJI"
+bindsym $mod+F1 exec ~/.config/wallpapers/feh-slides.sh ~/.config/wallpapers/black-background.jpg
+bindsym $mod+F2 exec ~/.config/wallpapers/mpv.sh "--ao=null --loop-file=inf https://youtu.be/DYW-kEiCnJI"
 bindsym $mod+F4 exec ~/.config/wallpapers/feh-slides.sh
 
 # FOCUS
