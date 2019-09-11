@@ -6,4 +6,5 @@
   #  allowedUDPPorts = [162];
   #};
 
+  fonts.fontconfig.enable = true;
 }

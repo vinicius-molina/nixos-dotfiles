@@ -106,6 +106,4 @@
         "100:window_type *= 'menu'"
       ];
      }; 
-    
-    fonts.fontconfig.enable = true;
 }
