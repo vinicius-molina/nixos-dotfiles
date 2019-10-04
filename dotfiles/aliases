@@ -44,7 +44,7 @@ alias speedtest="wget -O /dev/null http://speed.transip.nl/100mb.bin"
 # Wallpapers
 
 yt() {
-  xwinwrap -g 1920x1080+1440+0 -ni -s -ov -- mpv --ytdl-format=mp4 --cache=yes --save-position-on-quit -wid WID '$@'
+  xwinwrap -g 1920x1080+1440+0 -ni -s -ov -- mpv --ytdl-format=mp4 --cache=yes --save-position-on-quit -wid WID $1
 }
 
 wificfg() {
