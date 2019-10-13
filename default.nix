@@ -3,21 +3,59 @@
 {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  # environment.systemPackages = with pkgs; [
-  #   wget vim
-  # ];
 
   environment.systemPackages = with pkgs; [
+    # system utils
+    #unzip
+    #wget
+    #htop
     git
     neovim
-    rxvt_unicode
-    home-manager
+    kitty
+    #wpa_supplicant_gui
+    
+    # my system
+    firefox
+    chromium
+    ranger
+    feh
+    rofi
+    ncmpcpp
+    cmus
+    mpv
+    youtube-dl
+    compton
+    xwinwrap
+    zsh
+    oh-my-zsh
+    libreoffice
+    
+    # dev
+    #vscode # unfree
+    gcc
+    linuxHeaders
+    cmake
+    gnumake
+    elixir
+    yarn
+    nodejs
+    python3
+    python2
+    nerdfonts
+    python37Packages.powerline
+    powerline-fonts
+    fzf
+    silver-searcher
+    
+    # etc
+    krita
+    postgresql
+    inotify-tools
+    
+    # games
+    #steam # unfree
+    #wine
   ];
-
-  # Enable sound
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
-
 
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
@@ -47,5 +85,34 @@
 	];
       };
   };
+
+  services.compton = {
+    enable = true;
+    activeOpacity = "0.9";
+    inactiveOpacity = "0.85";
+    menuOpacity = "0.95";
+    shadowExclude = [
+      "! name ~= ''"
+      "class_g *?= 'firefox'"
+      "class_g *?= 'brave'"
+      "name ~= 'Firefox$'"
+      "name *= 'Chromium'"
+      "name *= 'Chrome'"
+      "name = 'Notification'"
+      "name = 'xfce4-notifyd'"
+      "name *= 'VLC'"
+      "name *= 'compton'"
+      "window_type *= 'menu'"
+    ];
+    opacityRule = [
+      "100:class_g *?= 'firefox'"
+      "100:class_g *?= 'brave'"
+      "100:name ~= 'Firefox$'"
+      "100:name *= 'Chromium'"
+      "100:name *= 'Chrome'"
+      "100:name *= 'VLC'"
+      "100:window_type *= 'menu'"
+    ];
+   }; 
 
 }
