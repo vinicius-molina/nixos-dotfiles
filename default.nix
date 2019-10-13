@@ -57,11 +57,13 @@
     nodejs
     python3
     python2
-    nerdfonts
     python37Packages.powerline
-    powerline-fonts
     fzf
     silver-searcher
+
+    # fonts
+    nerdfonts
+    powerline-fonts
     
     # etc
     krita
@@ -144,5 +146,14 @@
       "100:window_type *= 'menu'"
     ];
   }; 
+
+  programs.zsh = {
+    enable = true;
+    autosuggestions.enable = true;
+    syntaxHighlighting.enable = true;
+
+    ohMyZsh.enable = true;
+    ohMyZsh.theme = "agnoster";
+  };
 
 }
