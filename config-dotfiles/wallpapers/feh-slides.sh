@@ -16,7 +16,7 @@ if [[ $# -lt 1 ]]; then
 
   while true; do
     feh --recursive --randomize --bg-fill ~/wallpapers
-    sleep 5
+    sleep 120
   done
 }
 EOF
@@ -29,7 +29,7 @@ else
 
   while true; do
     feh --bg-fill $1
-    sleep 5
+    sleep 120
   done
 }
 EOF

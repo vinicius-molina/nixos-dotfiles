@@ -12,13 +12,13 @@ floating_modifier $mod
 # tee /sys/class/backlight/radeon_bl0/brightness <<< 100
 
 # MAIN BINDINGS
-bindsym $mod+Return exec urxvt
+bindsym $mod+Return exec kitty
 bindsym $mod+Shift+q kill
 bindsym $mod+d exec rofi -show run
-bindsym $mod+Ctrl+e exec --no-startup-id urxvt -e nvim .config/i3/config
-bindsym $mod+Ctrl+x exec --no-startup-id urxvt -e nvim .Xresources
-bindsym $mod+Ctrl+r exec --no-startup-id urxvt -e ranger
-bindsym $mod+Ctrl+n exec --no-startup-id urxvt -e ncmpcpp
+bindsym $mod+Ctrl+e exec --no-startup-id kitty -e nvim .config/i3/config
+bindsym $mod+Ctrl+x exec --no-startup-id kitty -e nvim .Xresources
+bindsym $mod+Ctrl+r exec --no-startup-id kitty -e ranger
+bindsym $mod+Ctrl+n exec --no-startup-id kitty -e ncmpcpp
 bindsym $mod+Ctrl+p exec --no-startup-id pavucontrol
 bindsym Print exec --no-startup-id ~/.config/i3/flameshot.sh full -c -p ~/screenshots
 bindsym Shift+Print exec --no-startup-id ~/.config/i3/flameshot.sh gui -p ~/screenshots
@@ -28,6 +28,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Ctrl+l exec "i3lock-fancy"
 bindsym $mod+Alt xrdb ~/.Xresources
 
 # Wallpapers binds
@@ -155,7 +156,7 @@ hide_edge_borders none
 
 # SPECIAL WINDOWS CONFIGS
 for_window [class="XTerm"] floating enable
-for_window [class="urxvt"] border pixel 0
+for_window [class="kitty"] border pixel 0
 
 # Hiding borders
 hide_edge_borders both
@@ -182,11 +183,11 @@ for_window [window_type="dialog"] floating enable
 for_window [window_type="menu"] floating enable
 
 # EXECS
-#exec_always --no-startup-id compton 
-#exec_always ~/.config/polybar/polybar.sh
-#exec_always --no-startup-id nm-applet
+exec_always --no-startup-id compton 
+exec_always ~/.config/polybar/launch.sh
 exec_always --no-startup-id ~/.config/wallpapers/feh-slides.sh
+#exec_always --no-startup-id nm-applet
 
-bar {
-  status_command i3status
-}
+#bar {
+#  status_command i3status
+#}

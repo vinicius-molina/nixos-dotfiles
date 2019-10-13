@@ -4,6 +4,11 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
 
+  nixpkgs.config.allowUnfree = true;
+
+  # 32 bit openGL support, for steam works
+  hardware.opengl.driSupport32Bit = true;
+
   environment.systemPackages = with pkgs; [
     # system utils
     #unzip
@@ -17,18 +22,29 @@
     # my system
     firefox
     chromium
-    ranger
-    feh
+    feh # image view with recursive to wallpapers
+    sxiv # image view with gif support
     rofi
-    ncmpcpp
     cmus
     mpv
-    youtube-dl
-    compton
-    xwinwrap
+    youtube-dl # download yt
+    compton # composite xorg
+    xwinwrap # to add animated wallpapers
     zsh
     oh-my-zsh
     libreoffice
+    #gnome3.nautilus # file mannager
+    dolphin # file mannager
+    ranger # console file mannager
+    lxappearance # mannage themes
+    mpd # server music
+    ncmpcpp # client music
+    (polybar.override {
+      alsaSupport = true;
+      pulseSupport = true;
+      mpdSupport = true;
+      i3Support = true;
+    })
     
     # dev
     #vscode # unfree
@@ -51,9 +67,10 @@
     krita
     postgresql
     inotify-tools
+    arandr # organize monitors
     
     # games
-    #steam # unfree
+    steam # unfree
     #wine
   ];
 
@@ -65,8 +82,17 @@
   # environment.pathsToLink = [ "/libexec" ]; # links /libexec from derivation to /run/current-system/sw
   services.xserver = {
     enable = true;
+    videoDrivers = [
+      "nvidia"
+    ];
+
+    # to see all layouts/variant/options use:
+    # cat `(nix-build --no-out-link '<nixpkgs>' -A xorg.xkeyboardconfig)`/etc/X11/xkb/rules/base.lst
+    # to see locales: https://sourceware.org/git/?p=glibc.git;a=blob;f=localedata/SUPPORTED
+
     layout = "us";
-      autorun = true;
+    xkbVariant = "intl";
+    autorun = true;
 
       displayManager.lightdm.enable = true;
 
@@ -79,11 +105,15 @@
 	enable = true;
 	extraPackages = with pkgs; [
           dmenu # application launcher
-	  i3status # default i3 status bar
-	  i3lock # default i3 screen locker
-	  #i3blocks #substitui o i3status
+	  i3lock-fancy
 	];
       };
+  };
+  
+  services.mpd = {
+    enable = true;
+    startWhenNeeded = true;
+    musicDirectory = /home/vinicius/music;
   };
 
   services.compton = {
@@ -104,7 +134,7 @@
       "name *= 'compton'"
       "window_type *= 'menu'"
     ];
-    opacityRule = [
+    opacityRules = [
       "100:class_g *?= 'firefox'"
       "100:class_g *?= 'brave'"
       "100:name ~= 'Firefox$'"
@@ -113,6 +143,6 @@
       "100:name *= 'VLC'"
       "100:window_type *= 'menu'"
     ];
-   }; 
+  }; 
 
 }
