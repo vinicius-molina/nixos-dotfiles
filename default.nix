@@ -9,7 +9,8 @@
   # 32 bit openGL support, for steam works
   hardware.opengl.driSupport32Bit = true;
 
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs;
+    [
     # system utils
     #unzip
     #wget
@@ -74,6 +75,8 @@
     # games
     steam # unfree
     #wine
+
+    # non-nix packages
   ];
 
   # Enable the X11 windowing system.
@@ -134,6 +137,7 @@
       "name = 'xfce4-notifyd'"
       "name *= 'VLC'"
       "name *= 'compton'"
+      "name *= 'Krita'"
       "window_type *= 'menu'"
     ];
     opacityRules = [
@@ -147,6 +151,21 @@
     ];
   }; 
 
+  services.postgresql = {
+    enable = true;
+    package = pkgs.postgresql_10;
+    enableTCPIP = false;
+    authentication = pkgs.lib.mkOverride 10 ''
+      local all all trust
+      #host all all ::1/128 trust
+    '';
+    initialScript = pkgs.writeText "backend-initScript" ''
+      CREATE ROLE postgres WITH LOGIN PASSWORD 'postgres' CREATEDB;
+      CREATE DATABASE postgres;
+      GRANT ALL PRIVILEGES ON DATABASE postgres TO postgres;
+    '';
+  };
+
   programs.zsh = {
     enable = true;
     autosuggestions.enable = true;
@@ -155,5 +174,10 @@
     ohMyZsh.enable = true;
     ohMyZsh.theme = "agnoster";
   };
+
+  boot.extraModulePackages = [ 
+    (import ./src/digimend.nix)
+  ];
+  boot.kernelModules = [ "digimend" ];
 
 }
