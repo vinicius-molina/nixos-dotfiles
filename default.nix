@@ -67,13 +67,12 @@
     powerline-fonts
     
     # etc
-    krita
-    postgresql
+    #krita
     inotify-tools
     arandr # organize monitors
     
     # games
-    steam # unfree
+    #steam # unfree
     #wine
 
     # non-nix packages
@@ -87,9 +86,9 @@
   # environment.pathsToLink = [ "/libexec" ]; # links /libexec from derivation to /run/current-system/sw
   services.xserver = {
     enable = true;
-    videoDrivers = [
-      "nvidia"
-    ];
+    #videoDrivers = [
+    #  "nvidia"
+    #];
 
     # to see all layouts/variant/options use:
     # cat `(nix-build --no-out-link '<nixpkgs>' -A xorg.xkeyboardconfig)`/etc/X11/xkb/rules/base.lst
@@ -122,7 +121,7 @@
   };
 
   services.compton = {
-    enable = true;
+    enable = false;
     activeOpacity = "0.9";
     inactiveOpacity = "0.85";
     menuOpacity = "0.95";
@@ -152,7 +151,7 @@
   }; 
 
   services.postgresql = {
-    enable = true;
+    enable = false;
     package = pkgs.postgresql_11;
     enableTCPIP = false;
     authentication = pkgs.lib.mkOverride 11 ''
@@ -176,9 +175,17 @@
     ohMyZsh.theme = "agnoster";
   };
 
-  boot.extraModulePackages = [ 
-    (import ./src/digimend.nix)
-  ];
-  boot.kernelModules = [ "digimend" ];
+  virtualisation.docker.enable = true;
+  users.users.vinicius.extraGroups = [ "docker" ];
+
+  networking.extraHosts =
+  ''
+    0.0.0.0 kafka
+  '';
+
+  #boot.extraModulePackages = [ 
+  #  (import ./src/digimend.nix)
+  #];
+  #boot.kernelModules = [ "digimend" ];
 
 }
